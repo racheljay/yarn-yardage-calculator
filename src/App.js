@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { styled } from '@stitches/react';
+
+const Container = styled('div', {
+  background: "teal",
+  display: "flex",
+  flexDirection: "column",
+  height: "100vh",
+  margin: "2rem",
+  width: "80rem",
+})
+const Input = styled('input', {
+  width: "5rem"
+})
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  <Container>
+    <h1>Yarn Yardage Calculator</h1>
+    <Input></Input>
+  </Container>
+  )
 }
 
 export default App;
