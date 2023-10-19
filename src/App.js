@@ -12,6 +12,29 @@ const Input = styled('input', {
   width: "5rem"
 })
 
+// Data includes a min and max for each entry
+const yardagePer100Grams = [
+  [850, 950],
+  [440, 460],
+  [330, 440],
+  [250, 350],
+  [170, 220],
+  [110, 140],
+  [60, 110],
+  [10, 30]
+]
+
+const weightStrings = [
+  "0 - Lace",
+  "1 - Super Fine",
+  "2 - Fine",
+  "3 - Light",
+  "4 - Medium",
+  "5 - Bulky",
+  "6 - Super Bulky",
+  "7 - Jumbo"
+]
+
 function App() {
   return (
   <Container>
