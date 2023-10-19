@@ -12,6 +12,7 @@ const Input = styled('input', {
   width: "5rem"
 })
 
+// Data includes a min and max for each entry
 const yardagePer100Grams = [
   [850, 950],
   [440, 460],
