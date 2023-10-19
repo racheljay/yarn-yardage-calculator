@@ -35,6 +35,15 @@ const weightStrings = [
   "7 - Jumbo"
 ]
 
+const calculateWeight = (type, weight) => {
+  const hundredGramYardage = yardagePer100Grams[type]
+
+  const minLength = (hundredGramYardage[0] / 100) * weight
+  const maxLength = (hundredGramYardage[1] / 100) * weight
+
+  return [minLength, maxLength]
+}
+
 function App() {
   return (
   <Container>
