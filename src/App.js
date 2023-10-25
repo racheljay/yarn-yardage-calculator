@@ -69,7 +69,7 @@ function App() {
   const handleChange = (e) => {
 
     const isNumber = str => {
-      const numbers = /^[0-9]*$/
+      const numbers = /^[0-9]+$/
       console.log(str)
       return str.match(numbers)
     }
