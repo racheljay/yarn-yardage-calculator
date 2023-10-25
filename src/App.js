@@ -1,16 +1,19 @@
 import { styled } from '@stitches/react';
+import { useState } from 'react';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
-const Container = styled('div', {
-  background: "teal",
-  display: "flex",
-  flexDirection: "column",
-  height: "100vh",
-  margin: "2rem",
-  width: "80rem",
+const Form = styled('form', {
 })
-const Input = styled('input', {
-  width: "5rem"
+
+const Result = styled('div', {
+  fontSize: "3rem",
+  fontWeight: "600"
 })
+
+const WeightInput = styled('input', {
+})
+
 
 // Data includes a min and max for each entry
 const yardagePer100Grams = [
@@ -35,6 +38,22 @@ const weightStrings = [
   "7 - Jumbo"
 ]
 
+
+function YarnTypeDropdown() {
+  return (
+    <DropdownButton id="dropdown-basic-button" title="Select Yarn Weight">
+      {weightStrings.map((item, index) => {
+        return (
+          <Dropdown.Item
+            onClick={() => console.log(item)}
+            key={index}
+          >{item}</Dropdown.Item>
+        )
+      })}
+    </DropdownButton>
+  );
+}
+
 const calculateWeight = (type, weight) => {
   const hundredGramYardage = yardagePer100Grams[type]
 
@@ -45,11 +64,33 @@ const calculateWeight = (type, weight) => {
 }
 
 function App() {
+  const [numberInput, setNumberInput] = useState(0)
+
+  const handleChange = (e) => {
+
+    const isNumber = str => {
+      const numbers = /^[0-9]*$/
+      console.log(str)
+      return str.match(numbers)
+    }
+
+    if (isNumber(e.target.value)) {
+      setNumberInput(e.target.value)
+    }
+  }
   return (
-  <Container>
-    <h1>Yarn Yardage Calculator</h1>
-    <Input></Input>
-  </Container>
+    <>
+      <h1>Yarn Yardage Calculator</h1>
+      <Form onSubmit={e => e.preventDefault()}>
+        <WeightInput
+          onChange={handleChange}
+          type="number"
+          value={numberInput}
+        />
+        <YarnTypeDropdown />
+        <Result>ha</Result>
+      </Form>
+    </>
   )
 }
 
