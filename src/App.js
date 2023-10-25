@@ -14,6 +14,10 @@ const Result = styled('div', {
 const WeightInput = styled('input', {
 })
 
+const SubmitButton = styled('button', {
+
+})
+
 
 // Data includes a min and max for each entry
 const yardagePer100Grams = [
@@ -88,6 +92,7 @@ function App() {
           value={numberInput}
         />
         <YarnTypeDropdown />
+        <SubmitButton>Calculate Yardage</SubmitButton>
         <Result>ha</Result>
       </Form>
     </>
