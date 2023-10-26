@@ -15,7 +15,6 @@ const WeightInput = styled('input', {
 })
 
 const SubmitButton = styled('button', {
-
 })
 
 
@@ -42,45 +41,51 @@ const weightStrings = [
   "7 - Jumbo"
 ]
 
-
-function YarnTypeDropdown() {
-  return (
-    <DropdownButton id="dropdown-basic-button" title="Select Yarn Weight">
-      {weightStrings.map((item, index) => {
-        return (
-          <Dropdown.Item
-            onClick={() => console.log(item)}
-            key={index}
-          >{item}</Dropdown.Item>
-        )
-      })}
-    </DropdownButton>
-  );
-}
-
-const calculateWeight = (type, weight) => {
-  const hundredGramYardage = yardagePer100Grams[type]
-
-  const minLength = (hundredGramYardage[0] / 100) * weight
-  const maxLength = (hundredGramYardage[1] / 100) * weight
-
-  return [minLength, maxLength]
-}
-
 function App() {
   const [numberInput, setNumberInput] = useState(0)
+  const [resultString, setResultString] = useState("")
+  const [yarnSelection, setYarnSelection] = useState("")
+
+  function YarnTypeDropdown() {
+    return (
+      <DropdownButton id="dropdown-basic-button" title="Select Yarn Weight">
+        {weightStrings.map((item, index) => {
+          return (
+            <Dropdown.Item
+              onClick={() => setYarnSelection(index)}
+              key={index}
+            >{item}</Dropdown.Item>
+          )
+        })}
+      </DropdownButton>
+    );
+  }
+
+  const calculateWeight = (type, weight) => {
+    const hundredGramYardage = yardagePer100Grams[type]
+
+    const minLength = (hundredGramYardage[0] / 100) * weight
+    const maxLength = (hundredGramYardage[1] / 100) * weight
+
+    return [minLength, maxLength]
+  }
 
   const handleChange = (e) => {
 
     const isNumber = str => {
       const numbers = /^[0-9]+$/
-      console.log(str)
       return str.match(numbers)
     }
 
-    if (isNumber(e.target.value)) {
+    if (isNumber(e.target.value) || e.target.value === "") {
       setNumberInput(e.target.value)
     }
+  }
+
+  const handleSubmit = () => {
+    const resultArray = calculateWeight(yarnSelection, numberInput)
+
+    setResultString(`${resultArray[0]} to ${resultArray[1]} yards`)
   }
   return (
     <>
@@ -92,8 +97,11 @@ function App() {
           value={numberInput}
         />
         <YarnTypeDropdown />
-        <SubmitButton>Calculate Yardage</SubmitButton>
-        <Result>ha</Result>
+        <SubmitButton
+          type="submit"
+          onClick={() => handleSubmit()}
+        >Calculate Yardage</SubmitButton>
+        <Result>{resultString}</Result>
       </Form>
     </>
   )
