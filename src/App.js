@@ -1,5 +1,5 @@
 import { styled } from '@stitches/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
@@ -48,6 +48,13 @@ function App() {
   const [numberInput, setNumberInput] = useState(0)
   const [resultString, setResultString] = useState("")
   const [yarnSelection, setYarnSelection] = useState("")
+  const [formComplete, setFormComplete] = useState(false)
+
+  useEffect(() => {
+    if(numberInput > 0 && yarnSelection !== "") {
+      setFormComplete(true)
+    }
+  },[yarnSelection])
 
   function YarnTypeDropdown() {
     return (
@@ -89,12 +96,13 @@ function App() {
     setNumberInput(0)
     setResultString("")
     setYarnSelection("")
+    setFormComplete(false)
   }
 
   const handleSubmit = () => {
     const resultArray = calculateWeight(yarnSelection, numberInput)
 
-    setResultString(`${resultArray[0]} to ${resultArray[1]} yards`)
+    setResultString(`${resultArray[0].toFixed(2)} to ${resultArray[1].toFixed(2)} yards`)
   }
   return (
     <>
@@ -107,6 +115,7 @@ function App() {
         />
         <YarnTypeDropdown />
         <SubmitButton
+          disabled={!formComplete}
           type="submit"
           onClick={() => handleSubmit()}
         >Calculate Yardage</SubmitButton>
