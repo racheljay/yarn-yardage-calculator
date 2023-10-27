@@ -14,6 +14,9 @@ const Result = styled('div', {
 const WeightInput = styled('input', {
 })
 
+const ResetButton = styled('button', {
+
+})
 const SubmitButton = styled('button', {
 })
 
@@ -82,6 +85,12 @@ function App() {
     }
   }
 
+  const handleReset = () => {
+    setNumberInput(0)
+    setResultString("")
+    setYarnSelection("")
+  }
+
   const handleSubmit = () => {
     const resultArray = calculateWeight(yarnSelection, numberInput)
 
@@ -101,6 +110,9 @@ function App() {
           type="submit"
           onClick={() => handleSubmit()}
         >Calculate Yardage</SubmitButton>
+        <ResetButton
+          onClick={() => handleReset()}
+        >Reset Results</ResetButton>
         <Result>{resultString}</Result>
       </Form>
     </>
