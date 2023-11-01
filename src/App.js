@@ -3,7 +3,24 @@ import { useEffect, useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
+const tomato = "rgb(199, 75, 20)"
+const transparent = "rgb(255,255,255,0.25)"
+
+const Container = styled('div', {
+  alignItems: "center",
+  background: tomato,
+  color: "white",
+  display: "flex",
+  flexDirection: "column",
+  height: "100vh",
+  justifyContent: "center"
+})
+
 const Form = styled('form', {
+  background: transparent,
+  borderRadius: "10px",
+  height: "40rem",
+  width: "30rem"
 })
 
 const Result = styled('div', {
@@ -105,7 +122,7 @@ function App() {
     setResultString(`${resultArray[0].toFixed(2)} to ${resultArray[1].toFixed(2)} yards`)
   }
   return (
-    <>
+    <Container>
       <h1>Yarn Yardage Calculator</h1>
       <Form onSubmit={e => e.preventDefault()}>
         <WeightInput
@@ -124,7 +141,7 @@ function App() {
         >Reset Results</ResetButton>
         <Result>{resultString}</Result>
       </Form>
-    </>
+    </Container>
   )
 }
 
