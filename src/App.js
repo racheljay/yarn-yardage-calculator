@@ -45,6 +45,27 @@ const Title = styled('h1', {
 })
 
 const WeightInput = styled('input', {
+  background: "transparent",
+  border: "none",
+  borderBottom: "1px solid black",
+  fontSize: "4rem",
+  width: "inherit",
+  // hide number input arrow toggles
+  "&::-webkit-outer-spin-button, &::-webkit-inner-spin-button": {
+    "-webkit-appearance": "none",
+    margin: "0"
+  },
+  "-moz-appearance": "textfield",
+  "&::after": {
+    content: `"+"`,
+    background: "yellow",
+    display: "block",
+    position: "absolute",
+    zIndex: "10",
+    transform: "translateX(-100%)",
+    width: "1rem",
+    height: "1rem"
+  }
 })
 
 // Data includes a min and max for each entry
