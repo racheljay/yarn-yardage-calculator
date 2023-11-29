@@ -4,7 +4,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
 const tomato = "rgb(199, 75, 20)"
-const transparent = "rgb(255,255,255,0.25)"
+const transparent = "rgb(255,255,255,0.22)"
 
 const Container = styled('div', {
   alignItems: "center",
@@ -28,15 +28,24 @@ const Result = styled('div', {
   fontWeight: "600"
 })
 
-const WeightInput = styled('input', {
-})
-
 const ResetButton = styled('button', {
-
+  
 })
 const SubmitButton = styled('button', {
 })
 
+const Title = styled('h1', {
+  borderRadius: "10px",
+  fontFamily: "'Shrikhand', serif",
+  fontSize: "4rem",
+  marginLeft: "-10rem",
+  textShadow: "-10px 10px black",
+  // set the width to force test on different lines
+  width: "20rem"
+})
+
+const WeightInput = styled('input', {
+})
 
 // Data includes a min and max for each entry
 const yardagePer100Grams = [
@@ -123,7 +132,7 @@ function App() {
   }
   return (
     <Container>
-      <h1>Yarn Yardage Calculator</h1>
+      <Title>Yarn Yardage Calculator</Title>
       <Form onSubmit={e => e.preventDefault()}>
         <WeightInput
           onChange={handleChange}
