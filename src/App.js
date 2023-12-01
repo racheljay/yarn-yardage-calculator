@@ -19,7 +19,10 @@ const Container = styled('div', {
 const Form = styled('form', {
   background: transparent,
   borderRadius: "10px",
+  display: "flex",
+  flexDirection: "column",
   height: "40rem",
+  alignItems: "center",
   width: "30rem"
 })
 
@@ -29,7 +32,7 @@ const Result = styled('div', {
 })
 
 const ResetButton = styled('button', {
-  
+
 })
 const SubmitButton = styled('button', {
 })
@@ -45,27 +48,29 @@ const Title = styled('h1', {
 })
 
 const WeightInput = styled('input', {
-  background: "transparent",
-  border: "none",
-  borderBottom: "1px solid black",
-  fontSize: "4rem",
-  width: "inherit",
+  background: "white",
+  border: "2px solid white",
+  borderRadius: "inherit",
+  fontSize: "3rem",
+  margin: "1rem",
+  paddingLeft: "1rem",
+  width: "25rem",
   // hide number input arrow toggles
   "&::-webkit-outer-spin-button, &::-webkit-inner-spin-button": {
     "-webkit-appearance": "none",
     margin: "0"
   },
   "-moz-appearance": "textfield",
-  "&::after": {
-    content: `"+"`,
-    background: "yellow",
-    display: "block",
-    position: "absolute",
-    zIndex: "10",
-    transform: "translateX(-100%)",
-    width: "1rem",
-    height: "1rem"
-  }
+  // "&::after": {
+  //   content: `"+"`,
+  //   background: "yellow",
+  //   display: "block",
+  //   position: "absolute",
+  //   zIndex: "10",
+  //   transform: "translateX(-100%)",
+  //   width: "1rem",
+  //   height: "1rem"
+  // }
 })
 
 // Data includes a min and max for each entry
@@ -98,23 +103,41 @@ function App() {
   const [formComplete, setFormComplete] = useState(false)
 
   useEffect(() => {
-    if(numberInput > 0 && yarnSelection !== "") {
+    if (numberInput > 0 && yarnSelection !== "") {
       setFormComplete(true)
     }
-  },[yarnSelection])
+  }, [yarnSelection])
 
   function YarnTypeDropdown() {
     return (
-      <DropdownButton id="dropdown-basic-button" title="Select Yarn Weight">
-        {weightStrings.map((item, index) => {
-          return (
-            <Dropdown.Item
-              onClick={() => setYarnSelection(index)}
-              key={index}
-            >{item}</Dropdown.Item>
-          )
-        })}
-      </DropdownButton>
+      <>
+        <style type="text/css">
+          {`
+    .btn-flat {
+      background-color: white;
+      color: ${tomato};
+    }
+    .btn-bigger {
+      margin: 1rem 1.5rem;
+      font-size: 1.5rem;
+    }
+    `}
+        </style>
+        <DropdownButton
+          variant="flat"
+          size="bigger"
+          id="dropdown-basic-button"
+          title={yarnSelection !== "" ? weightStrings[yarnSelection] : "Select Yarn Weight"}>
+          {weightStrings.map((item, index) => {
+            return (
+              <Dropdown.Item
+                onClick={() => setYarnSelection(index)}
+                key={index}
+              >{item}</Dropdown.Item>
+            )
+          })}
+        </DropdownButton>
+      </>
     );
   }
 
